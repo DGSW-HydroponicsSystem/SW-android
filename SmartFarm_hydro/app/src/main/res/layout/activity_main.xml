@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartfarm2.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_view">
+
+
+        <ImageView
+            android:id="@+id/userImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_user" />
+
+        <TextView
+            android:id="@+id/tvFarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/noto_bold"
+            android:text="농장 상태"
+            android:textColor="@color/main_text"
+            android:textFontWeight="700"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userImg" />
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFarm">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/humidity_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/item_background"
+                        android:elevation="10dp"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/humidity_main"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/humidity_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="2dp"
+                                app:srcCompat="@drawable/ic_humidity" />
+
+                            <TextView
+                                android:id="@+id/humidity_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="sans-serif"
+                                android:text="습도 현황"
+                                android:textColor="@color/main_text"
+                                android:textFontWeight="400"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/humidity_progress"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="8dp"
+                            android:progressDrawable="@drawable/humidity_progress"
+                            app:layout_constraintEnd_toStartOf="@+id/humidity_tvProgress"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/humidity_main" />
+
+                        <TextView
+                            android:id="@+id/humidity_tvProgress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="11dp"
+                            android:layout_marginEnd="84dp"
+                            android:fontFamily="sans-serif"
+                            android:text="50%"
+                            android:textColor="@color/humidty_progress"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/humidity_main" />
+
+                        <TextView
+                            android:id="@+id/humidity_tvStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="sans-serif"
+                            android:text="습도는 현재 50% 입니다."
+                            android:textColor="@color/hint_color"
+                            android:textFontWeight="400"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/humidity_progress" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/temp_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/item_background"
+                        android:elevation="10dp"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/temp_main"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/temp_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="2dp"
+                                app:srcCompat="@drawable/ic_temp" />
+
+                            <TextView
+                                android:id="@+id/temp_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="sans-serif"
+                                android:text="온도 현황"
+                                android:textColor="@color/main_text"
+                                android:textFontWeight="400"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/temp_progress"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="8dp"
+                            android:progressDrawable="@drawable/temp_progress"
+                            app:layout_constraintEnd_toStartOf="@+id/temp_tvProgress"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/temp_main" />
+
+                        <TextView
+                            android:id="@+id/temp_tvProgress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="11dp"
+                            android:layout_marginEnd="84dp"
+                            android:fontFamily="sans-serif"
+                            android:text="50%"
+                            android:textColor="@color/temp_progress"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/temp_main" />
+
+                        <TextView
+                            android:id="@+id/temp_tvStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="sans-serif"
+                            android:text="온도는 현재 50% 입니다."
+                            android:textColor="@color/hint_color"
+                            android:textFontWeight="400"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/temp_progress" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/led_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/item_background"
+                        android:elevation="10dp"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/led_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/led_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="2dp"
+                                app:srcCompat="@drawable/ic_led" />
+
+                            <TextView
+                                android:id="@+id/led_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="sans-serif"
+                                android:text="LED 현황"
+                                android:textColor="@color/main_text"
+                                android:textFontWeight="400"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/led_sub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/led_tvStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="8dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Led 현재 상태"
+                                android:textColor="@color/hint_color"
+                                android:textFontWeight="400"
+                                android:textSize="12sp" />
+
+                            <ImageView
+                                android:id="@+id/led_imgStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/ic_led_off" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/led_sub">
+
+                            <ImageButton
+                                android:id="@+id/led_off_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="26dp"
+                                android:background="@android:color/transparent"
+                                android:onClick="@{() -> vm.onClickLedOffImage()}"
+                                app:srcCompat="@drawable/ic_led_off" />
+
+                            <ImageButton
+                                android:id="@+id/led_on_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="24dp"
+                                android:background="@android:color/transparent"
+                                android:onClick="@{() -> vm.onClickLedOnImage()}"
+                                app:srcCompat="@drawable/ic_led_on" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/led_onoff_btn"
+                                android:layout_width="50dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="24dp"
+                                android:background="@drawable/button_background"
+                                android:fontFamily="@font/noto_bold"
+                                android:onClick="@{() -> vm.onClickLedControlbtn()}"
+                                android:stateListAnimator="@null"
+                                android:text="확인"
+                                android:textColor="@color/button_text"
+                                android:textFontWeight="700"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/pump_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/item_background"
+                        android:elevation="10dp"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/pump_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/pump_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="2dp"
+                                app:srcCompat="@drawable/ic_waterpump" />
+
+                            <TextView
+                                android:id="@+id/pump_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="sans-serif"
+                                android:text="워터 펌프 현황"
+                                android:textColor="@color/main_text"
+                                android:textFontWeight="400"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/pump_sub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/pump_tvStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="8dp"
+                                android:fontFamily="sans-serif"
+                                android:text="워터펌프 현재 상태"
+                                android:textColor="@color/hint_color"
+                                android:textFontWeight="400"
+                                android:textSize="12sp" />
+
+                            <ImageView
+                                android:id="@+id/pump_imgStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:scaleType="center"
+                                app:srcCompat="@drawable/ic_pump_off" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/pump_sub">
+
+                            <ImageButton
+                                android:id="@+id/pump_off_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="26dp"
+                                android:background="@android:color/transparent"
+                                android:onClick="@{() -> vm.onClickPumpOffImage()}"
+                                app:srcCompat="@drawable/ic_pump_off" />
+
+                            <ImageButton
+                                android:id="@+id/pump_on_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="24dp"
+                                android:background="@android:color/transparent"
+                                android:onClick="@{() -> vm.onClickPumpOnImage()}"
+                                app:srcCompat="@drawable/ic_pump_on" />
+
+                            <Button
+                                android:id="@+id/pump_onoff_btn"
+                                android:layout_width="50dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="24dp"
+                                android:background="@drawable/button_background"
+                                android:fontFamily="@font/noto_bold"
+                                android:onClick="@{() -> vm.onClickPumpControlbtn()}"
+                                android:stateListAnimator="@null"
+                                android:text="확인"
+                                android:textColor="@color/button_text"
+                                android:textFontWeight="700"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </ScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <Switch
+            android:id="@+id/mode_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:checked="@={vm.modeSwitch}"
+            android:textColor="@color/mode_text"
+            android:textOff="다크 모드"
+            android:textOn="라이트 모드"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="라이트/블랙 모드" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
