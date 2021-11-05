@@ -1,5 +1,5 @@
 package kr.hs.dgsw.smartfarm2.network.model.response
 
-data class WaterPumpSensor(
+data class WaterStatus(
     val status: Boolean
 )

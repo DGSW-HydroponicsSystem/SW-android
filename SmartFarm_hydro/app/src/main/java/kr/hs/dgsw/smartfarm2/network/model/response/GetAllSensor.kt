@@ -7,6 +7,6 @@ data class GetAllSensor(
     val temp: Temp,
     @SerializedName("led_status")
     val ledStatus: LedStatus,
-    @SerializedName("water_pump_sensor")
-    val waterPumpSensor: WaterPumpSensor,
+    @SerializedName("water_status")
+    val waterStatus: WaterStatus,
     )

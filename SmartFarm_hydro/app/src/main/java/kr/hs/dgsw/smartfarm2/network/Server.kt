@@ -16,7 +16,7 @@ object Server {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
-        .baseUrl("http://10.80.163.229:8000/v2/")
+        .baseUrl("http://15.165.77.151:8080/v2/")
         .build()
         .create(Service::class.java)
 }

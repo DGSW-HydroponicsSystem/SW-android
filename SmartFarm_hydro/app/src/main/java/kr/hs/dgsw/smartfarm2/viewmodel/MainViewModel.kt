@@ -50,7 +50,7 @@ class MainViewModel : ViewModel() {
                 humidityValue.value = t.humidity.value
                 tempValue.value = t.temp.value
                 ledStatus.value = t.ledStatus.status
-                pumpStatus.value = t.waterPumpSensor.status
+                pumpStatus.value = t.waterStatus.status
             }
 
             override fun onError(e: Throwable) {
