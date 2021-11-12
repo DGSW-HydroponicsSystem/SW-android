@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartfarm2.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.Single
@@ -75,6 +76,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun controlPump(params: HashMap<String?, Boolean?>) {
+        Log.e("e", "ㅇㄻㄴㄹㅇ ${params["status"]}")
         addDisposable(repository.controlPump(params), object : DisposableSingleObserver<Boolean>() {
             override fun onSuccess(t: Boolean) {
                 pumpControlResult.value = t

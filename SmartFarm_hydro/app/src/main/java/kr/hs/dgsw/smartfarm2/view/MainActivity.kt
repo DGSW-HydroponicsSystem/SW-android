@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartfarm2.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -152,9 +153,9 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     val params = HashMap<String?, Boolean?>()
 
-                    if (isChoiceLed == 0) {
+                    if (isChoicePump == 0) {
                         params["status"] = false
-                    } else if (isChoiceLed == 1) {
+                    } else if (isChoicePump == 1) {
                         params["status"] = true
                     }
                     viewModel.controlPump(params)
