@@ -14,7 +14,11 @@
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_hydro/app/src/main/res/drawable/item_background.xml" value="0.37037037037037035" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_hydro/app/src/main/res/drawable/temp_progress.xml" value="0.37037037037037035" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_hydro/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/ljh04/Documents/GitHub/SW-android/SmartFarm_hydro/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ljh04/Documents/GitHub/SW-android/SmartFarm_hydro/app/src/main/res/drawable/ic_backbtn.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/ljh04/Documents/GitHub/SW-android/SmartFarm_hydro/app/src/main/res/layout/activity_crops.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ljh04/Documents/GitHub/SW-android/SmartFarm_hydro/app/src/main/res/layout/activity_crops_detail.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ljh04/Documents/GitHub/SW-android/SmartFarm_hydro/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/ljh04/Documents/GitHub/SW-android/SmartFarm_hydro/app/src/main/res/layout/crops_item.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>

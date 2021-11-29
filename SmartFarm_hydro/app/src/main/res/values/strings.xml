@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">SmartFarm2</string>
+
+    <string name="farm_state">농장 상태</string>
+    <string name="humidity_state">습도 현황</string>
+    <string name="temp_state">온도 현황</string>
+    <string name="led_state">LED 현황</string>
+    <string name="water_state">워터펌프 현황</string>
+
+    <string name="water_current">워터펌프 현재 상태</string>
+    <string name="led_current">LED 현재 상태</string>
+
+    <string name="floor_1">1층</string>
+    <string name="floor_2">2층</string>
+
+    <string name="btn_text">확인</string>
+
+    <string name="mode">라이트/다크 모드</string>
+    <string name="mode_on">다크 모드</string>
+    <string name="mode_off">라이트 모드</string>
+
+    <string name="select_crops">농작물을 선택해주세요.</string>
+    <string name="btn_tip">농작물 팁 보기</string>
 </resources>

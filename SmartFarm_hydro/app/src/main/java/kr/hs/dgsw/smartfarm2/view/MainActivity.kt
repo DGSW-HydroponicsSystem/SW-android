@@ -1,12 +1,12 @@
 package kr.hs.dgsw.smartfarm2.view
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -63,51 +63,53 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-            humidityValue.observe(this@MainActivity, Observer {
-                if (it != -1) {
-                    binding.humidityProgress.progress = it
-                    binding.humidityTvProgress.text = "${it}%"
-                    binding.humidityTvStatus.text = "습도는 현재 ${it}% 입니다."
-                } else {
-                    binding.humidityProgress.progress = 0
-                    binding.humidityTvProgress.text = "${0}%"
-                    binding.humidityTvStatus.text = "값을 전달 받지 못했습니다."
-                }
-            })
+            getSensorSuccess.observe(this@MainActivity, Observer {
+                binding.humidityProgress1.progress = it.data.humidity1.value
+                binding.humidityTvProgress1.text = "${it.data.humidity1.value}%"
+                binding.humidityProgress2.progress = it.data.humidity2.value
+                binding.humidityTvProgress2.text = "${it.data.humidity2.value}%"
 
-            tempValue.observe(this@MainActivity, Observer {
-                if (it != -1) {
-                    binding.tempProgress.progress = it
-                    binding.tempTvProgress.text = "${it}℃"
-                    binding.tempTvStatus.text = "온도는 현재 ${it}℃ 입니다."
-                } else {
-                    binding.tempProgress.progress = 0
-                    binding.tempTvProgress.text = "${0}℃"
-                    binding.tempTvStatus.text = "값을 전달 받지 못했습니다."
-                }
-            })
+                binding.tempProgress1.progress = it.data.temp1.value
+                binding.tempTvProgress1.text = "${it.data.temp1.value}℃"
+                binding.tempProgress2.progress = it.data.temp2.value
+                binding.tempTvProgress2.text = "${it.data.temp2.value}℃"
 
-            ledStatus.observe(this@MainActivity, Observer {
-                if (it) {
+                if(it.data.ledStatus.status){
                     binding.ledImgStatus.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
                         R.drawable.ic_led_on))
                 } else {
                     binding.ledImgStatus.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
                         R.drawable.ic_led_off))
                 }
-            })
 
-            pumpStatus.observe(this@MainActivity, Observer {
-                if (it) {
+                if(it.data.waterPumpStatus.status){
                     binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
                         R.drawable.ic_pump_on))
                 } else {
                     binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
                         R.drawable.ic_pump_off))
                 }
+
+
+                Toast.makeText(this@MainActivity, "서버로부터 값을 전달받지 못했습니다.", Toast.LENGTH_SHORT).show()
             })
 
-            onErrorEvent.observe(this@MainActivity, Observer {
+            getSensorError.observe(this@MainActivity, Observer {
+                binding.humidityProgress1.progress = 0
+                binding.humidityTvProgress1.text = "${0}%"
+                binding.humidityProgress2.progress = 0
+                binding.humidityTvProgress2.text = "${0}%"
+
+                binding.tempProgress1.progress = 0
+                binding.tempTvProgress1.text = "${0}℃"
+                binding.tempProgress2.progress = 0
+                binding.tempTvProgress2.text = "${0}℃"
+
+                binding.ledImgStatus.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
+                    R.drawable.ic_led_off))
+                binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
+                    R.drawable.ic_pump_off))
+
                 Toast.makeText(this@MainActivity, "서버로부터 값을 전달받지 못했습니다.", Toast.LENGTH_SHORT).show()
             })
 
@@ -183,6 +185,11 @@ class MainActivity : AppCompatActivity() {
                         viewModel.getAllSensor()
                     }, 1500)
                 }
+            })
+
+            cropsTipBtn.observe(this@MainActivity, Observer {
+                val intent = Intent(this@MainActivity, CropsActivity::class.java)
+                startActivity(intent)
             })
         }
     }

@@ -18,13 +18,13 @@
 
         <ImageView
             android:id="@+id/userImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="48dp"
             android:layout_marginStart="26dp"
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user" />
+            app:srcCompat="@drawable/ic_logo" />
 
         <TextView
             android:id="@+id/tvFarm"
@@ -33,7 +33,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/noto_bold"
-            android:text="농장 상태"
+            android:text="@string/farm_state"
             android:textColor="@color/main_text"
             android:textFontWeight="700"
             android:textSize="18sp"
@@ -75,7 +75,7 @@
                         <LinearLayout
                             android:id="@+id/humidity_main"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -96,51 +96,89 @@
                                 android:layout_marginStart="8dp"
                                 android:layout_marginTop="4dp"
                                 android:fontFamily="sans-serif"
-                                android:text="습도 현황"
+                                android:text="@string/humidity_state"
                                 android:textColor="@color/main_text"
                                 android:textFontWeight="400"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
+                        <TextView
+                            android:id="@+id/tv_humidity_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/floor_1"
+                            android:textColor="@color/main_text"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/humidity_main" />
+
                         <ProgressBar
-                            android:id="@+id/humidity_progress"
+                            android:id="@+id/humidity_progress1"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="2dp"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="4dp"
                             android:layout_marginEnd="8dp"
                             android:progressDrawable="@drawable/humidity_progress"
-                            app:layout_constraintEnd_toStartOf="@+id/humidity_tvProgress"
+                            app:layout_constraintEnd_toStartOf="@+id/humidity_tvProgress1"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/humidity_main" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_1" />
 
                         <TextView
-                            android:id="@+id/humidity_tvProgress"
+                            android:id="@+id/humidity_tvProgress1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="11dp"
+                            android:layout_marginTop="4dp"
                             android:layout_marginEnd="84dp"
                             android:fontFamily="sans-serif"
-                            android:text="50%"
                             android:textColor="@color/humidty_progress"
                             android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/humidity_main" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_1"
+                            tools:text="50%" />
 
                         <TextView
-                            android:id="@+id/humidity_tvStatus"
+                            android:id="@+id/tv_humidity_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginTop="6dp"
-                            android:fontFamily="sans-serif"
-                            android:text="습도는 현재 50% 입니다."
-                            android:textColor="@color/hint_color"
-                            android:textFontWeight="400"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/floor_2"
+                            android:textColor="@color/main_text"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/humidity_progress" />
+                            app:layout_constraintTop_toBottomOf="@+id/humidity_progress1" />
+
+                        <ProgressBar
+                            android:id="@+id/humidity_progress2"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:progressDrawable="@drawable/humidity_progress"
+                            app:layout_constraintEnd_toStartOf="@+id/humidity_tvProgress1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_2" />
+
+                        <TextView
+                            android:id="@+id/humidity_tvProgress2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="84dp"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/humidty_progress"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_2"
+                            tools:text="50%" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -185,45 +223,84 @@
                                 android:textSize="14sp" />
                         </LinearLayout>
 
+                        <TextView
+                            android:id="@+id/tv_temp_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/floor_1"
+                            android:textColor="@color/main_text"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/temp_main" />
+
                         <ProgressBar
-                            android:id="@+id/temp_progress"
+                            android:id="@+id/temp_progress1"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="2dp"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="4dp"
                             android:layout_marginEnd="8dp"
                             android:progressDrawable="@drawable/temp_progress"
-                            app:layout_constraintEnd_toStartOf="@+id/temp_tvProgress"
+                            app:layout_constraintEnd_toStartOf="@+id/temp_tvProgress1"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/temp_main" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_1" />
 
                         <TextView
-                            android:id="@+id/temp_tvProgress"
+                            android:id="@+id/temp_tvProgress1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="11dp"
+                            android:layout_marginTop="4dp"
                             android:layout_marginEnd="84dp"
                             android:fontFamily="sans-serif"
                             android:text="50%"
                             android:textColor="@color/temp_progress"
                             android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/temp_main" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_1" />
 
                         <TextView
-                            android:id="@+id/temp_tvStatus"
+                            android:id="@+id/tv_temp_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginTop="6dp"
-                            android:fontFamily="sans-serif"
-                            android:text="온도는 현재 50% 입니다."
-                            android:textColor="@color/hint_color"
-                            android:textFontWeight="400"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/floor_2"
+                            android:textColor="@color/main_text"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/temp_progress" />
+                            app:layout_constraintTop_toBottomOf="@+id/temp_progress1" />
+
+                        <ProgressBar
+                            android:id="@+id/temp_progress2"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:progressDrawable="@drawable/temp_progress"
+                            app:layout_constraintEnd_toStartOf="@+id/temp_tvProgress2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_2" />
+
+                        <TextView
+                            android:id="@+id/temp_tvProgress2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="84dp"
+                            android:fontFamily="sans-serif"
+                            android:text="50%"
+                            android:textColor="@color/temp_progress"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_2" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -277,13 +354,13 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                android:id="@+id/led_tvStatus"
+                                android:id="@+id/led_tvStatus1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginRight="8dp"
                                 android:fontFamily="sans-serif"
-                                android:text="Led 현재 상태"
+                                android:text="@string/led_current"
                                 android:textColor="@color/hint_color"
                                 android:textFontWeight="400"
                                 android:textSize="12sp" />
@@ -298,13 +375,13 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/led_choice_"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="10dp"
                             android:orientation="horizontal"
-                            android:paddingTop="5dp"
+                            android:paddingTop="4dp"
                             android:paddingBottom="5dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/led_sub">
@@ -317,7 +394,8 @@
                                 android:layout_marginStart="26dp"
                                 android:background="@android:color/transparent"
                                 android:onClick="@{() -> vm.onClickLedOffImage()}"
-                                app:srcCompat="@drawable/ic_led_off" />
+                                app:srcCompat="@drawable/ic_led_off"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                             <ImageButton
                                 android:id="@+id/led_on_img"
@@ -327,7 +405,8 @@
                                 android:layout_marginStart="24dp"
                                 android:background="@android:color/transparent"
                                 android:onClick="@{() -> vm.onClickLedOnImage()}"
-                                app:srcCompat="@drawable/ic_led_on" />
+                                app:srcCompat="@drawable/ic_led_on"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/led_onoff_btn"
@@ -338,14 +417,13 @@
                                 android:fontFamily="@font/noto_bold"
                                 android:onClick="@{() -> vm.onClickLedControlbtn()}"
                                 android:stateListAnimator="@null"
-                                android:text="확인"
+                                android:text="@string/btn_text"
                                 android:textColor="@color/button_text"
                                 android:textFontWeight="700"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         </LinearLayout>
-
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -460,7 +538,7 @@
                                 android:fontFamily="@font/noto_bold"
                                 android:onClick="@{() -> vm.onClickPumpControlbtn()}"
                                 android:stateListAnimator="@null"
-                                android:text="확인"
+                                android:text="@string/btn_text"
                                 android:textColor="@color/button_text"
                                 android:textFontWeight="700"
                                 android:textSize="14sp" />
@@ -480,11 +558,28 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:checked="@={vm.modeSwitch}"
+            android:minHeight="48dp"
+            android:text="@string/mode"
             android:textColor="@color/mode_text"
-            android:textOff="다크 모드"
-            android:textOn="라이트 모드"
+            android:textOff="@string/mode_off"
+            android:textOn="@string/mode_on"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="라이트/블랙 모드" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:background="@color/button_text"
+            android:fontFamily="sans-serif"
+            android:onClick="@{() -> vm.onClickCropsTipBtn()}"
+            android:padding="10dp"
+            android:text="@string/btn_tip"
+            android:textColor="@color/main_item"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/refresh_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mode_toggle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

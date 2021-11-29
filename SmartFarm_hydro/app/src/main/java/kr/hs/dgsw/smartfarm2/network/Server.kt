@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartfarm2.network
 
-import kr.hs.dgsw.smartfarm2.network.api.Service
+import kr.hs.dgsw.smartfarm2.network.api.CropsService
+import kr.hs.dgsw.smartfarm2.network.api.SensorService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,7 +17,10 @@ object Server {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
-        .baseUrl("http://15.165.77.151:8080/v2/")
+        .baseUrl("http://13.124.59.128:8080/v2/")
         .build()
-        .create(Service::class.java)
+
+
+    val cropsApi: CropsService = retrofit.create(CropsService::class.java)
+    val sensorApi: SensorService = retrofit.create(SensorService::class.java)
 }

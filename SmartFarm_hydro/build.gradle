@@ -11,13 +11,14 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
-    ext{
+    ext {
         rxjava_version = "2.2.21"
         rxandroid_version = "2.1.1"
         retrofit2_version = "2.9.0"
         okhttp3_version = "4.9.1"
         lifecycle_version = "2.3.0"
         supportV4_version = "28.0.0"
+        glide_version = "4.12.0"
     }
 }
 

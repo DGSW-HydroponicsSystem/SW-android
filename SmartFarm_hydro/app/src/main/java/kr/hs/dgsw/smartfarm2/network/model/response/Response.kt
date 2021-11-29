@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartfarm2.network.model.response
 
-data class Temp(
+data class Response<T>(
     val status: Int,
-    val value: Int
+    val detail: String,
+    val data: T,
 )

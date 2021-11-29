@@ -11,11 +11,12 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kr.hs.dgsw.smartfarm2.network.model.response.GetAllSensor
-import kr.hs.dgsw.smartfarm2.repository.MainRepository
+import kr.hs.dgsw.smartfarm2.network.model.response.Response
+import kr.hs.dgsw.smartfarm2.repository.SensorRepository
 import kr.hs.dgsw.smartfarm2.util.SingleLiveEvent
 
 class MainViewModel : ViewModel() {
-    val repository = MainRepository()
+    val repository = SensorRepository()
     val disposable = CompositeDisposable()
 
     val ledOffImage = SingleLiveEvent<Any>()
@@ -26,11 +27,8 @@ class MainViewModel : ViewModel() {
     val pumpOnImage = SingleLiveEvent<Any>()
     val pumpControlBtn = SingleLiveEvent<Any>()
 
-    val humidityValue = MutableLiveData<Int>()
-    val tempValue = MutableLiveData<Int>()
-    val ledStatus = MutableLiveData<Boolean>()
-    val pumpStatus = MutableLiveData<Boolean>()
-    val onErrorEvent = MutableLiveData<Throwable>()
+    val getSensorSuccess = MutableLiveData<Response<GetAllSensor>>()
+    val getSensorError = MutableLiveData<Throwable>()
 
     val ledControlResult = MutableLiveData<Boolean>()
     val pumpControlResult = MutableLiveData<Boolean>()
@@ -38,25 +36,25 @@ class MainViewModel : ViewModel() {
 
     val modeSwitch = MutableLiveData<Boolean>()
 
-    init {
-        humidityValue.value = -1
-        tempValue.value = -1
+    val cropsTipBtn = SingleLiveEvent<Any>()
 
+    init {
         getAllSensor()
     }
 
+    fun onClickCropsTipBtn(){
+        cropsTipBtn.call()
+    }
+
     fun getAllSensor() {
-        addDisposable(repository.getAllSensor(), object : DisposableSingleObserver<GetAllSensor>() {
-            override fun onSuccess(t: GetAllSensor) {
-                humidityValue.value = t.humidity.value
-                tempValue.value = t.temp.value
-                ledStatus.value = t.ledStatus.status
-                pumpStatus.value = t.waterStatus.status
+        addDisposable(repository.getAllSensor(), object : DisposableSingleObserver<Response<GetAllSensor>>() {
+            override fun onSuccess(t: Response<GetAllSensor>) {
+                getSensorSuccess.value = t
             }
 
             override fun onError(e: Throwable) {
                 e.printStackTrace()
-                onErrorEvent.value = e
+                getSensorError.value = e
             }
 
         })
