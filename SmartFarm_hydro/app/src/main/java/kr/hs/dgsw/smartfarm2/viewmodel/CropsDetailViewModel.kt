@@ -10,6 +10,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kr.hs.dgsw.smartfarm2.network.model.response.Crop
+import kr.hs.dgsw.smartfarm2.network.model.response.Response
 import kr.hs.dgsw.smartfarm2.repository.CropsRepository
 import kr.hs.dgsw.smartfarm2.util.SingleLiveEvent
 
@@ -18,14 +19,14 @@ class CropsDetailViewModel : ViewModel() {
     val disposable = CompositeDisposable()
     val repository = CropsRepository()
 
-    val cropSuccess = MutableLiveData<Crop>()
+    val cropSuccess = MutableLiveData<Response<Crop>>()
     val cropError = MutableLiveData<Throwable>()
 
     val backBtn = SingleLiveEvent<Any>()
 
     fun getCrop() {
-        addDisposable(repository.getCurrentCrops(), object : DisposableSingleObserver<Crop>() {
-            override fun onSuccess(t: Crop) {
+        addDisposable(repository.getCurrentCrops(), object : DisposableSingleObserver<Response<Crop>>() {
+            override fun onSuccess(t: Response<Crop>) {
                 cropSuccess.value = t
             }
 

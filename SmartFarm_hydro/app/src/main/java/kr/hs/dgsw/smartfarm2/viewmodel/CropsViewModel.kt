@@ -47,10 +47,12 @@ class CropsViewModel: ViewModel() {
         addDisposable(repository.updateCrops(pk), object : DisposableSingleObserver<Response<Any>>(){
             override fun onSuccess(t: Response<Any>) {
                 updateSuccess.value = t
+                Log.e("tt","${t.data}")
             }
 
             override fun onError(e: Throwable) {
                 updateError.value = e
+                Log.e("dfa", "${e}")
             }
 
         })

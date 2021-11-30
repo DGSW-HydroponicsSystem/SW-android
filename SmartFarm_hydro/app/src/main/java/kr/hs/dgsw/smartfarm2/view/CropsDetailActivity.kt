@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartfarm2.R
 import kr.hs.dgsw.smartfarm2.databinding.ActivityCropsDetailBinding
+import kr.hs.dgsw.smartfarm2.network.Constants
 import kr.hs.dgsw.smartfarm2.viewmodel.CropsDetailViewModel
 
 class CropsDetailActivity : AppCompatActivity() {
@@ -26,13 +27,14 @@ class CropsDetailActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
+        viewModel.getCrop()
         with(viewModel) {
             cropSuccess.observe(this@CropsDetailActivity, Observer {
-                binding.cropName.text = it.name
-                binding.cropContent.text = it.content
+                binding.cropName.text = it.data.name
+                binding.cropContent.text = it.data.content
 
                 Glide.with(this@CropsDetailActivity)
-                    .load(it.imageUrl)
+                    .load("${Constants.HOST}${it.data.imageUrl}")
                     .into(binding.cropImage)
             })
 

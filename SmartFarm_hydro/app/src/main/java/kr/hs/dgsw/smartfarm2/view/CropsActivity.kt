@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartfarm2.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -50,6 +51,7 @@ class CropsActivity : AppCompatActivity() {
             })
 
             updateError.observe(this@CropsActivity, Observer {
+                Log.e("dsaf", it.toString())
                 Toast.makeText(this@CropsActivity,
                     "오류가 발생했습니다. 다시 시도해주세요",
                     Toast.LENGTH_SHORT).show()
