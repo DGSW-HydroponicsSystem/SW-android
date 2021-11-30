@@ -218,45 +218,6 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_humidity_3"
                             android:text="@string/none" />
-
-                        <TextView
-                            android:id="@+id/tv_humidity_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="@string/floor_4"
-                            android:textColor="@color/main_text"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/humidity_progress3" />
-
-                        <ProgressBar
-                            android:id="@+id/humidity_progress4"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="8dp"
-                            android:progressDrawable="@drawable/humidity_progress"
-                            app:layout_constraintEnd_toStartOf="@+id/humidity_tvProgress2"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_4" />
-
-                        <TextView
-                            android:id="@+id/humidity_tvProgress4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="78dp"
-                            android:fontFamily="sans-serif"
-                            android:textColor="@color/humidty_progress"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_4"
-                            android:text="@string/none" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -417,45 +378,6 @@
                             android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_temp_3" />
-
-                        <TextView
-                            android:id="@+id/tv_temp_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="@string/floor_4"
-                            android:textColor="@color/main_text"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/temp_progress3" />
-
-                        <ProgressBar
-                            android:id="@+id/temp_progress4"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="8dp"
-                            android:progressDrawable="@drawable/temp_progress"
-                            app:layout_constraintEnd_toStartOf="@+id/temp_tvProgress2"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_4" />
-
-                        <TextView
-                            android:id="@+id/temp_tvProgress4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="78dp"
-                            android:fontFamily="sans-serif"
-                            android:text="@string/none"
-                            android:textColor="@color/temp_progress"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_4" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
