@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="kr.hs.dgsw.smartfarm2.viewmodel.CropsDetailViewModel" />
@@ -12,16 +13,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_view"
         tools:context=".view.CropsDetailActivity">
 
         <ImageButton
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"
-            android:onClick="@{() -> vm.onClickBackBtn()}"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="@android:color/transparent"
+            android:onClick="@{() -> vm.onClickBackBtn()}"
             android:padding="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -54,11 +56,12 @@
 
         <TextView
             android:id="@+id/crop_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="60dp"
             android:fontFamily="sans-serif"
             android:text="가나다라마바사아자차카타파하"
             android:textColor="@color/main_text"
