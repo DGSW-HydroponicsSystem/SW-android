@@ -12,6 +12,11 @@
 
     <string name="floor_1">1층</string>
     <string name="floor_2">2층</string>
+    <string name="floor_3">3층</string>
+    <string name="floor_4">4층</string>
+    <string name="floor_5">5층</string>
+
+    <string name="none">None</string>
 
     <string name="btn_text">확인</string>
 

@@ -179,6 +179,10 @@ class MainActivity : AppCompatActivity() {
                         viewModel.getAllSensor()
                     }, 1500)
                 }
+                binding.ledOnImg.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
+                    R.drawable.ic_led_on))
+                binding.ledOffImg.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
+                    R.drawable.ic_led_off))
             })
 
             pumpControlResult.observe(this@MainActivity, Observer {
@@ -188,6 +192,11 @@ class MainActivity : AppCompatActivity() {
                         viewModel.getAllSensor()
                     }, 1500)
                 }
+
+                binding.pumpOnImg.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
+                    R.drawable.ic_pump_on))
+                binding.pumpOffImg.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
+                    R.drawable.ic_pump_off))
             })
 
             cropsTipBtn.observe(this@MainActivity, Observer {
@@ -195,6 +204,29 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             })
         }
+    }
+
+    fun ledState(){
+        val params = HashMap<String?, Boolean?>()
+
+        if (isChoiceLed == 0) {
+            params["status"] = false
+        } else if (isChoiceLed == 1) {
+            params["status"] = true
+        }
+
+        viewModel.controlLed(params)
+    }
+
+    fun waterPumpState(){
+        val params = HashMap<String?, Boolean?>()
+
+        if (isChoicePump == 0) {
+            params["status"] = false
+        } else if (isChoicePump == 1) {
+            params["status"] = true
+        }
+        viewModel.controlPump(params)
     }
 
     private fun ledSetChoice(choice: Int) {
@@ -206,6 +238,7 @@ class MainActivity : AppCompatActivity() {
 
                 binding.ledOnImg.setImageDrawable(ContextCompat.getDrawable(this,
                     R.drawable.ic_led_on))
+                ledState()
             }
             1 -> {
                 isChoiceLed = choice
@@ -213,6 +246,7 @@ class MainActivity : AppCompatActivity() {
                     R.drawable.ic_led_check))
                 binding.ledOffImg.setImageDrawable(ContextCompat.getDrawable(this,
                     R.drawable.ic_led_off))
+                ledState()
             }
         }
     }
@@ -225,6 +259,7 @@ class MainActivity : AppCompatActivity() {
                     R.drawable.ic_pump_check))
                 binding.pumpOnImg.setImageDrawable(ContextCompat.getDrawable(this,
                     R.drawable.ic_pump_on))
+                waterPumpState()
             }
             1 -> {
                 isChoicePump = choice
@@ -232,6 +267,7 @@ class MainActivity : AppCompatActivity() {
                     R.drawable.ic_pump_check))
                 binding.pumpOffImg.setImageDrawable(ContextCompat.getDrawable(this,
                     R.drawable.ic_pump_off))
+                waterPumpState()
             }
         }
     }
