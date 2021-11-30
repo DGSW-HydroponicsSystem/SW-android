@@ -3,13 +3,14 @@ package kr.hs.dgsw.smartfarm2.repository
 import io.reactivex.Single
 import kr.hs.dgsw.smartfarm2.network.Server
 import kr.hs.dgsw.smartfarm2.network.Server.cropsApi
+import kr.hs.dgsw.smartfarm2.network.model.response.C
 import kr.hs.dgsw.smartfarm2.network.model.response.Crop
 import kr.hs.dgsw.smartfarm2.network.model.response.Crops
 import kr.hs.dgsw.smartfarm2.network.model.response.Response
 import org.json.JSONObject
 
 class CropsRepository {
-    fun getAllCrops(): Single<Response<List<Crops>>> {
+    fun getAllCrops(): Single<Response<C>> {
         return cropsApi.getAllCrops().map {
             if(!it.isSuccessful){
                 val errorBody = JSONObject(it.errorBody().toString())

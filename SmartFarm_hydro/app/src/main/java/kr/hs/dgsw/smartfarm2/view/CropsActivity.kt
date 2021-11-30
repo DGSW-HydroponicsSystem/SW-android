@@ -33,7 +33,7 @@ class CropsActivity : AppCompatActivity() {
                 val adapter = CropsAdapter()
                 adapter.context = this@CropsActivity
                 adapter.viewModel = viewModel
-                adapter.items = it
+                adapter.items = it.crops
 
                 binding.cropsRecycler.adapter = adapter
             })

@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartfarm2.view
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -54,6 +55,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         aniBounce = AnimationUtils.loadAnimation(this, R.anim.button_animation)
+        viewModel.getAllSensor()
+
         with(viewModel) {
             modeSwitch.observe(this@MainActivity, Observer {
                 if (it) {
@@ -89,12 +92,12 @@ class MainActivity : AppCompatActivity() {
                     binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(this@MainActivity,
                         R.drawable.ic_pump_off))
                 }
-
-
-                Toast.makeText(this@MainActivity, "서버로부터 값을 전달받지 못했습니다.", Toast.LENGTH_SHORT).show()
             })
 
             getSensorError.observe(this@MainActivity, Observer {
+                Log.e("dfa", it.toString())
+                it.printStackTrace()
+
                 binding.humidityProgress1.progress = 0
                 binding.humidityTvProgress1.text = "${0}%"
                 binding.humidityProgress2.progress = 0

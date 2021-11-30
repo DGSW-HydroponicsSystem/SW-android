@@ -39,7 +39,6 @@ class MainViewModel : ViewModel() {
     val cropsTipBtn = SingleLiveEvent<Any>()
 
     init {
-        getAllSensor()
     }
 
     fun onClickCropsTipBtn(){
@@ -74,7 +73,6 @@ class MainViewModel : ViewModel() {
     }
 
     fun controlPump(params: HashMap<String?, Boolean?>) {
-        Log.e("e", "ㅇㄻㄴㄹㅇ ${params["status"]}")
         addDisposable(repository.controlPump(params), object : DisposableSingleObserver<Boolean>() {
             override fun onSuccess(t: Boolean) {
                 pumpControlResult.value = t

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartfarm2.R
 import kr.hs.dgsw.smartfarm2.databinding.CropsItemBinding
+import kr.hs.dgsw.smartfarm2.network.model.response.C
 import kr.hs.dgsw.smartfarm2.network.model.response.Crops
 import kr.hs.dgsw.smartfarm2.viewmodel.CropsViewModel
 

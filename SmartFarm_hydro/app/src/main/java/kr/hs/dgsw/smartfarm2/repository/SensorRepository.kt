@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartfarm2.repository
 
+import android.util.Log
 import io.reactivex.Single
 import kr.hs.dgsw.smartfarm2.network.Server
 import kr.hs.dgsw.smartfarm2.network.Server.sensorApi
@@ -14,6 +15,7 @@ class SensorRepository {
                 val errorBody = JSONObject(it.errorBody().toString())
                 throw Throwable(errorBody.getString("message"))
             }
+            Log.e("sadf", "${it.body()}")
             it.body()
         }
     }
