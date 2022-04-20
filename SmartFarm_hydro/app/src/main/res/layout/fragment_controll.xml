@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartfarm2.viewmodel.ControlViewModel" />
+
+        <variable
+            name="fm"
+            type="kr.hs.dgsw.smartfarm2.view.fagment.ControlFragment" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_controlView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.fagment.ControlFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/led_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/item_background"
+                    android:elevation="10dp"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/led_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/led_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="2dp"
+                            app:srcCompat="@drawable/ic_led" />
+
+                        <TextView
+                            android:id="@+id/led_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif"
+                            android:text="LED 현황"
+                            android:textColor="@color/main_text"
+                            android:textFontWeight="400"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/led_sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/led_tvStatus1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="8dp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/led_current"
+                            android:textColor="@color/hint_color"
+                            android:textFontWeight="400"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:id="@+id/led_imgStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:scaleType="center"
+                            app:srcCompat="@drawable/ic_led_off" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/led_choice1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/led_sub">
+
+                        <ImageButton
+                            android:id="@+id/led_off_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="26dp"
+                            android:background="@android:color/transparent"
+                            android:onClick="@{() -> vm.onClickLedOffImage()}"
+                            app:srcCompat="@drawable/ic_led_off"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                        <ImageButton
+                            android:id="@+id/led_on_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="24dp"
+                            android:background="@android:color/transparent"
+                            android:onClick="@{() -> vm.onClickLedOnImage()}"
+                            app:srcCompat="@drawable/ic_led_on"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+                        <!-- <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/led_onoff_btn"
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="24dp"
+                            android:background="@drawable/button_background"
+                            android:fontFamily="@font/noto_bold"
+                            android:onClick="@{() -> vm.onClickLedControlbtn()}"
+                            android:stateListAnimator="@null"
+                            android:text="@string/btn_text"
+                            android:textColor="@color/button_text"
+                            android:textFontWeight="700"
+                            android:textSize="14sp"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" /> -->
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/pump_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/item_background"
+                    android:elevation="10dp"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/pump_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/pump_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="2dp"
+                            app:srcCompat="@drawable/ic_waterpump" />
+
+                        <TextView
+                            android:id="@+id/pump_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif"
+                            android:text="워터 펌프 현황"
+                            android:textColor="@color/main_text"
+                            android:textFontWeight="400"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/pump_sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/pump_tvStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="8dp"
+                            android:fontFamily="sans-serif"
+                            android:text="워터펌프 현재 상태"
+                            android:textColor="@color/hint_color"
+                            android:textFontWeight="400"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:id="@+id/pump_imgStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:scaleType="center"
+                            app:srcCompat="@drawable/ic_pump_off" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pump_sub">
+
+                        <ImageButton
+                            android:id="@+id/pump_off_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="26dp"
+                            android:background="@android:color/transparent"
+                            android:onClick="@{() -> vm.onClickPumpOffImage()}"
+                            app:srcCompat="@drawable/ic_pump_off" />
+
+                        <ImageButton
+                            android:id="@+id/pump_on_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="24dp"
+                            android:background="@android:color/transparent"
+                            android:onClick="@{() -> vm.onClickPumpOnImage()}"
+                            app:srcCompat="@drawable/ic_pump_on" />
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fan_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/item_background"
+                    android:elevation="10dp"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/fan_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/fan_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="2dp"
+                            app:srcCompat="@drawable/ic_fan" />
+
+                        <TextView
+                            android:id="@+id/fan_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif"
+                            android:text="환풍기 현황"
+                            android:textColor="@color/main_text"
+                            android:textFontWeight="400"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/fan_sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/fan_tvStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="8dp"
+                            android:fontFamily="sans-serif"
+                            android:text="환풍기 현재 상태"
+                            android:textColor="@color/hint_color"
+                            android:textFontWeight="400"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:id="@+id/fan_imgStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:scaleType="center"
+                            app:srcCompat="@drawable/ic_fan_off" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fan_sub">
+
+                        <ImageButton
+                            android:id="@+id/fan_off_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="26dp"
+                            android:background="@android:color/transparent"
+                            android:onClick="@{() -> vm.onClickFanOffImage()}"
+                            app:srcCompat="@drawable/ic_fan_off" />
+
+                        <ImageButton
+                            android:id="@+id/fan_on_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="24dp"
+                            android:background="@android:color/transparent"
+                            android:onClick="@{() -> vm.onClickFanOnImage()}"
+                            app:srcCompat="@drawable/ic_fan_on" />
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

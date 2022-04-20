@@ -26,4 +26,8 @@
 
     <string name="select_crops">농작물을 선택해주세요.</string>
     <string name="btn_tip">농작물 팁 보기</string>
+
+    <string name="string_camera">실시간 보기</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

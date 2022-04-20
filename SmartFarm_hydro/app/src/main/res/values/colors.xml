@@ -18,7 +18,19 @@
     <color name="temp_none">#FEE5E5</color>
     <color name="temp_progress">#FA5252</color>
 
+    <color name="sunlight_none">#FFF9E5</color>
+    <color name="sunlight_progress">#FFCD1E</color>
+
+    <color name="ph_none">#E9FBF4</color>
+    <color name="ph_progress">#29D98F</color>
+
     <color name="hint_color">#798BB0</color>
+
+    <color name="button_off_color">#F0F2F4</color>
+    <color name="button_off_text">#8994A9</color>
+
+    <color name="button_on_color">#1E6BFF</color>
+    <color name="button_on_text">#FFFFFF</color>
 
     <color name="button_color">#EDF3FF</color>
     <color name="button_text">#1E6BFF</color>

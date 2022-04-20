@@ -13,13 +13,13 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".view.CropsDetailActivity"
+            android:name=".view.activity.CropsDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".view.CropsActivity"
+            android:name=".view.activity.CropsActivity"
             android:exported="true" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

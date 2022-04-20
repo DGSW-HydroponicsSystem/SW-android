@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="vm"
             type="kr.hs.dgsw.smartfarm2.viewmodel.MainViewModel" />
@@ -13,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_view">
+        android:background="@color/main_view"
+        tools:context=".view.activity.MainActivity">
 
 
         <ImageView
@@ -24,652 +24,75 @@
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user" />
-
-        <TextView
-            android:id="@+id/tvFarm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="6dp"
-            android:fontFamily="@font/noto_bold"
-            android:text="@string/farm_state"
-            android:textColor="@color/main_text"
-            android:textFontWeight="700"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userImg" />
-
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFarm">
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/humidity_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/item_background"
-                        android:elevation="10dp"
-                        android:padding="10dp">
-
-                        <LinearLayout
-                            android:id="@+id/humidity_main"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/humidity_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="2dp"
-                                android:layout_marginTop="2dp"
-                                app:srcCompat="@drawable/ic_humidity" />
-
-                            <TextView
-                                android:id="@+id/humidity_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="sans-serif"
-                                android:text="@string/humidity_state"
-                                android:textColor="@color/main_text"
-                                android:textFontWeight="400"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tv_humidity_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="@string/floor_1"
-                            android:textColor="@color/main_text"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/humidity_main" />
-
-                        <ProgressBar
-                            android:id="@+id/humidity_progress1"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="8dp"
-                            android:progressDrawable="@drawable/humidity_progress"
-                            app:layout_constraintEnd_toStartOf="@+id/humidity_tvProgress1"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_1" />
-
-                        <TextView
-                            android:id="@+id/humidity_tvProgress1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="84dp"
-                            android:fontFamily="sans-serif"
-                            android:textColor="@color/humidty_progress"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_1"
-                            tools:text="50%" />
-
-                        <TextView
-                            android:id="@+id/tv_humidity_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="@string/floor_2"
-                            android:textColor="@color/main_text"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/humidity_progress1" />
-
-                        <ProgressBar
-                            android:id="@+id/humidity_progress2"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="8dp"
-                            android:progressDrawable="@drawable/humidity_progress"
-                            app:layout_constraintEnd_toStartOf="@+id/humidity_tvProgress1"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_2" />
-
-                        <TextView
-                            android:id="@+id/humidity_tvProgress2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="84dp"
-                            android:fontFamily="sans-serif"
-                            android:textColor="@color/humidty_progress"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_2"
-                            tools:text="50%" />
-
-                        <TextView
-                            android:id="@+id/tv_humidity_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="@string/floor_3"
-                            android:textColor="@color/main_text"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/humidity_progress2" />
-
-                        <ProgressBar
-                            android:id="@+id/humidity_progress3"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="8dp"
-                            android:progressDrawable="@drawable/humidity_progress"
-                            app:layout_constraintEnd_toStartOf="@+id/humidity_tvProgress2"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_3" />
-
-                        <TextView
-                            android:id="@+id/humidity_tvProgress3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="78dp"
-                            android:fontFamily="sans-serif"
-                            android:textColor="@color/humidty_progress"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_humidity_3"
-                            android:text="@string/none" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/temp_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/item_background"
-                        android:elevation="10dp"
-                        android:padding="10dp">
-
-                        <LinearLayout
-                            android:id="@+id/temp_main"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/temp_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="2dp"
-                                android:layout_marginTop="2dp"
-                                app:srcCompat="@drawable/ic_temp" />
-
-                            <TextView
-                                android:id="@+id/temp_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="sans-serif"
-                                android:text="온도 현황"
-                                android:textColor="@color/main_text"
-                                android:textFontWeight="400"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tv_temp_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="@string/floor_1"
-                            android:textColor="@color/main_text"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/temp_main" />
-
-                        <ProgressBar
-                            android:id="@+id/temp_progress1"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="8dp"
-                            android:progressDrawable="@drawable/temp_progress"
-                            app:layout_constraintEnd_toStartOf="@+id/temp_tvProgress1"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_1" />
-
-                        <TextView
-                            android:id="@+id/temp_tvProgress1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="84dp"
-                            android:fontFamily="sans-serif"
-                            android:text="50%"
-                            android:textColor="@color/temp_progress"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_1" />
-
-                        <TextView
-                            android:id="@+id/tv_temp_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="@string/floor_2"
-                            android:textColor="@color/main_text"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/temp_progress1" />
-
-                        <ProgressBar
-                            android:id="@+id/temp_progress2"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="8dp"
-                            android:progressDrawable="@drawable/temp_progress"
-                            app:layout_constraintEnd_toStartOf="@+id/temp_tvProgress2"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_2" />
-
-                        <TextView
-                            android:id="@+id/temp_tvProgress2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="84dp"
-                            android:fontFamily="sans-serif"
-                            android:text="50%"
-                            android:textColor="@color/temp_progress"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_2" />
-
-                        <TextView
-                            android:id="@+id/tv_temp_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="sans-serif-medium"
-                            android:text="@string/floor_3"
-                            android:textColor="@color/main_text"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/temp_progress2" />
-
-                        <ProgressBar
-                            android:id="@+id/temp_progress3"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="8dp"
-                            android:progressDrawable="@drawable/temp_progress"
-                            app:layout_constraintEnd_toStartOf="@+id/temp_tvProgress2"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_3" />
-
-                        <TextView
-                            android:id="@+id/temp_tvProgress3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="78dp"
-                            android:fontFamily="sans-serif"
-                            android:text="@string/none"
-                            android:textColor="@color/temp_progress"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_temp_3" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/led_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/item_background"
-                        android:elevation="10dp"
-                        android:padding="10dp">
-
-                        <LinearLayout
-                            android:id="@+id/led_main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/led_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="2dp"
-                                android:layout_marginTop="2dp"
-                                app:srcCompat="@drawable/ic_led" />
-
-                            <TextView
-                                android:id="@+id/led_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="sans-serif"
-                                android:text="LED 현황"
-                                android:textColor="@color/main_text"
-                                android:textFontWeight="400"
-                                android:textSize="14sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/led_sub"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:id="@+id/led_tvStatus1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="8dp"
-                                android:fontFamily="sans-serif"
-                                android:text="@string/led_current"
-                                android:textColor="@color/hint_color"
-                                android:textFontWeight="400"
-                                android:textSize="12sp" />
-
-                            <ImageView
-                                android:id="@+id/led_imgStatus"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="16dp"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/ic_led_off" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/led_choice_"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal"
-                            android:paddingTop="4dp"
-                            android:paddingBottom="5dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/led_sub">
-
-                            <ImageButton
-                                android:id="@+id/led_off_img"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginStart="26dp"
-                                android:background="@android:color/transparent"
-                                android:onClick="@{() -> vm.onClickLedOffImage()}"
-                                app:srcCompat="@drawable/ic_led_off"
-                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                            <ImageButton
-                                android:id="@+id/led_on_img"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginStart="24dp"
-                                android:background="@android:color/transparent"
-                                android:onClick="@{() -> vm.onClickLedOnImage()}"
-                                app:srcCompat="@drawable/ic_led_on"
-                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                            <!-- <androidx.appcompat.widget.AppCompatButton
-                                android:id="@+id/led_onoff_btn"
-                                android:layout_width="50dp"
-                                android:layout_height="40dp"
-                                android:layout_marginStart="24dp"
-                                android:background="@drawable/button_background"
-                                android:fontFamily="@font/noto_bold"
-                                android:onClick="@{() -> vm.onClickLedControlbtn()}"
-                                android:stateListAnimator="@null"
-                                android:text="@string/btn_text"
-                                android:textColor="@color/button_text"
-                                android:textFontWeight="700"
-                                android:textSize="14sp"
-                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" /> -->
-
-                        </LinearLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/pump_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/item_background"
-                        android:elevation="10dp"
-                        android:padding="10dp">
-
-                        <LinearLayout
-                            android:id="@+id/pump_main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/pump_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="2dp"
-                                android:layout_marginTop="2dp"
-                                app:srcCompat="@drawable/ic_waterpump" />
-
-                            <TextView
-                                android:id="@+id/pump_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="4dp"
-                                android:fontFamily="sans-serif"
-                                android:text="워터 펌프 현황"
-                                android:textColor="@color/main_text"
-                                android:textFontWeight="400"
-                                android:textSize="14sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/pump_sub"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <TextView
-                                android:id="@+id/pump_tvStatus"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="8dp"
-                                android:fontFamily="sans-serif"
-                                android:text="워터펌프 현재 상태"
-                                android:textColor="@color/hint_color"
-                                android:textFontWeight="400"
-                                android:textSize="12sp" />
-
-                            <ImageView
-                                android:id="@+id/pump_imgStatus"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="16dp"
-                                android:scaleType="center"
-                                app:srcCompat="@drawable/ic_pump_off" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="20dp"
-                            android:orientation="horizontal"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/pump_sub">
-
-                            <ImageButton
-                                android:id="@+id/pump_off_img"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginStart="26dp"
-                                android:background="@android:color/transparent"
-                                android:onClick="@{() -> vm.onClickPumpOffImage()}"
-                                app:srcCompat="@drawable/ic_pump_off" />
-
-                            <ImageButton
-                                android:id="@+id/pump_on_img"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginStart="24dp"
-                                android:background="@android:color/transparent"
-                                android:onClick="@{() -> vm.onClickPumpOnImage()}"
-                                app:srcCompat="@drawable/ic_pump_on" />
-
-                            <!-- <Button
-                                android:id="@+id/pump_onoff_btn"
-                                android:layout_width="50dp"
-                                android:layout_height="40dp"
-                                android:layout_marginStart="24dp"
-                                android:background="@drawable/button_background"
-                                android:fontFamily="@font/noto_bold"
-                                android:onClick="@{() -> vm.onClickPumpControlbtn()}"
-                                android:stateListAnimator="@null"
-                                android:text="@string/btn_text"
-                                android:textColor="@color/button_text"
-                                android:textFontWeight="700"
-                                android:textSize="14sp" /> -->
-
-                        </LinearLayout>
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-            </ScrollView>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-        <Switch
-            android:id="@+id/mode_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:checked="@={vm.modeSwitch}"
-            android:minHeight="48dp"
-            android:text="@string/mode"
-            android:textColor="@color/mode_text"
-            android:textOff="@string/mode_off"
-            android:textOn="@string/mode_on"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:srcCompat="@drawable/ic_profile" />
 
         <LinearLayout
+            android:id="@+id/camera_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> vm.onClickCropsTipBtn()}"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mode_toggle">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:srcCompat="@drawable/ic_book"
-                android:layout_marginEnd="12dp"/>
+                android:id="@+id/image_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:srcCompat="@drawable/ic_camera" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tv_camera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="sans-serif"
-                android:text="@string/btn_tip"
-                android:textColor="@color/main_text"
-                android:textSize="16sp" />
+                android:fontFamily="@font/noto_bold"
+                android:text="@string/string_camera"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_state">
+
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button_off_background"
+            android:text="농장상태"
+            android:textColor="@color/button_off_text"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userImg" />
+
+        <Button
+            android:id="@+id/button_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/button_off_background"
+            android:text="농장제어"
+            android:textColor="@color/button_off_text"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/button_state"
+            app:layout_constraintTop_toTopOf="@+id/button_state" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

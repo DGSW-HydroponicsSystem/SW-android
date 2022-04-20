@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartfarm2.view
+package kr.hs.dgsw.smartfarm2.view.activity
 
 import android.content.Intent
 import android.os.Bundle
