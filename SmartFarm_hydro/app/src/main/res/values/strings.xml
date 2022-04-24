@@ -7,7 +7,9 @@
     <string name="led_state">LED 현황</string>
     <string name="water_state">워터펌프 현황</string>
 
-    <string name="water_current">워터펌프 현재 상태</string>
+    <string name="water_current1">워터펌프1 현재 상태</string>
+    <string name="water_current2">워터펌프2 현재 상태</string>
+    <string name="water_current3">워터펌프3 현재 상태</string>
     <string name="led_current">LED 현재 상태</string>
 
     <string name="floor_1">1층</string>

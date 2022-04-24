@@ -19,9 +19,14 @@ class MainViewModel : ViewModel() {
     val disposable = CompositeDisposable()
 
     val cropsTipBtn = SingleLiveEvent<Any>()
+    val cameraBtn = SingleLiveEvent<Any>()
 
     fun onClickCropsTipBtn(){
         cropsTipBtn.call()
+    }
+
+    fun onClickCamera(){
+        cameraBtn.call()
     }
 
     override fun onCleared() {

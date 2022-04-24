@@ -11,14 +11,14 @@
 
         <variable
             name="fm"
-            type="kr.hs.dgsw.smartfarm2.view.fagment.ControlFragment" />
+            type="kr.hs.dgsw.smartfarm2.view.fragment.ControlFragment" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_controlView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.fagment.ControlFragment">
+        tools:context=".view.fragment.ControlFragment">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -195,6 +195,8 @@
 
                     </LinearLayout>
 
+
+
                     <LinearLayout
                         android:id="@+id/pump_sub"
                         android:layout_width="wrap_content"
@@ -254,6 +256,115 @@
                             android:layout_marginStart="24dp"
                             android:background="@android:color/transparent"
                             android:onClick="@{() -> vm.onClickPumpOnImage()}"
+                            app:srcCompat="@drawable/ic_pump_on" />
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/pump_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/item_background"
+                    android:elevation="10dp"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/pump_main2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/pump_image2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="2dp"
+                            app:srcCompat="@drawable/ic_waterpump" />
+
+                        <TextView
+                            android:id="@+id/pump_text2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif"
+                            android:text="워터 펌프2 현황"
+                            android:textColor="@color/main_text"
+                            android:textFontWeight="400"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/pump_sub2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/pump_tvStatus2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="8dp"
+                            android:fontFamily="sans-serif"
+                            android:text="워터펌프2 현재 상태"
+                            android:textColor="@color/hint_color"
+                            android:textFontWeight="400"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:id="@+id/pump_imgStatus2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:scaleType="center"
+                            app:srcCompat="@drawable/ic_pump_off" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pump_sub2">
+
+                        <ImageButton
+                            android:id="@+id/pump_off_img2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="26dp"
+                            android:background="@android:color/transparent"
+                            android:onClick="@{() -> vm.onClickPumpOffImage2()}"
+                            app:srcCompat="@drawable/ic_pump_off" />
+
+                        <ImageButton
+                            android:id="@+id/pump_on_img2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="24dp"
+                            android:background="@android:color/transparent"
+                            android:onClick="@{() -> vm.onClickPumpOnImage2()}"
                             app:srcCompat="@drawable/ic_pump_on" />
 
                     </LinearLayout>

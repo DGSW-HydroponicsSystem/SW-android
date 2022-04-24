@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartfarm2.view.fagment
+package kr.hs.dgsw.smartfarm2.view.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -56,14 +56,24 @@ class StateFragment : Fragment() {
                 binding.tempProgress2.progress = it.data.temp2.value
                 binding.tempTvProgress2.text = "${it.data.temp2.value}℃"
 
-                binding.waterTempProgress1.progress = it.data.waterTemp.status
-                binding.waterTempTvProgress1.text = "${it.data.waterTemp.status}℃"
+                binding.waterTempProgress1.progress = it.data.waterTemp1.status
+                binding.waterTempTvProgress1.text = "${it.data.waterTemp1.status}℃"
+                binding.waterTempProgress2.progress = it.data.waterTemp2.status
+                binding.waterTempTvProgress2.text = "${it.data.waterTemp2.status}℃"
 
                 binding.waterLevelProgress1.progress = it.data.waterLevel.status
-                binding.waterLevelTvProgress1.text = "${it.data.waterLevel.status}L"
+                when (it.data.waterLevel.status) {
+                    1 -> binding.waterLevelTvProgress1.text = "하"
+                    2 -> binding.waterLevelTvProgress1.text = "중"
+                    3 -> binding.waterLevelTvProgress1.text = "상"
+                    4 -> binding.waterLevelTvProgress1.text = "가득"
+                    else -> binding.waterLevelTvProgress1.text = "없음"
+                }
 
-                binding.sunlightProgress1.progress = it.data.sunlight.status
-                binding.sunlightTvProgress1.text = "${it.data.sunlight.status}%"
+                binding.sunlightProgress1.progress = it.data.sunlight1.status
+                binding.sunlightTvProgress1.text = "${it.data.sunlight1.status}%"
+                binding.sunlightProgress2.progress = it.data.sunlight2.status
+                binding.sunlightTvProgress2.text = "${it.data.sunlight2.status}%"
 
                 binding.phProgress1.progress = it.data.waterPh.status.roundToInt()
                 binding.phTvProgress1.text = "${it.data.waterPh.status.roundToInt()}pH"
@@ -87,12 +97,16 @@ class StateFragment : Fragment() {
 
                 binding.waterTempProgress1.progress = 0
                 binding.waterTempTvProgress1.text = "0℃"
+                binding.waterTempProgress2.progress = 0
+                binding.waterTempTvProgress2.text = "0℃"
 
                 binding.waterLevelProgress1.progress = 0
-                binding.waterLevelTvProgress1.text = "0L"
+                binding.waterLevelTvProgress1.text = "없음"
 
                 binding.sunlightProgress1.progress = 0
                 binding.sunlightTvProgress1.text = "0%"
+                binding.sunlightProgress2.progress = 0
+                binding.sunlightTvProgress2.text = "0%"
 
                 binding.phProgress1.progress = 0
                 binding.phTvProgress1.text = "0pH"

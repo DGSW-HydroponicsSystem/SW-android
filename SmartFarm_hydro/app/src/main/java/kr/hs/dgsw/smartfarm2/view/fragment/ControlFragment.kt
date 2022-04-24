@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartfarm2.view.fagment
+package kr.hs.dgsw.smartfarm2.view.fragment
 
 import android.os.Bundle
 import android.os.Handler
@@ -24,6 +24,7 @@ class ControlFragment : Fragment() {
 
     private var isChoiceLed: Int = -1
     private var isChoicePump: Int = -1
+    private var isChoicePump2: Int = -1
     private var isChoiceFan: Int = -1
 
     override fun onCreateView(
@@ -47,6 +48,10 @@ class ControlFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        binding.refreshControlView.setOnRefreshListener {
+            viewModel.getAllStatus()
+        }
+
         with(viewModel) {
             ledOffImage.observe(this@ControlFragment, Observer {
                 ledSetChoice(0)
@@ -74,6 +79,32 @@ class ControlFragment : Fragment() {
                 }
             })
 
+            getAllResult.observe(viewLifecycleOwner, Observer {
+                if (it.ledStatus.status) {
+                    binding.ledImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_led_on))
+                } else {
+                    binding.ledImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_led_off))
+                }
+
+                if (it.waterStatus.status) {
+                    binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_pump_on))
+                } else {
+                    binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_pump_off))
+                }
+
+                if (it.fanStatus.status) {
+                    binding.fanImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_fan_on))
+                } else {
+                    binding.fanImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_fan_off))
+                }
+            })
+
             pumpOffImage.observe(this@ControlFragment, Observer {
                 pumpSetChoice(0)
                 binding.pumpOffImg.startAnimation(aniBounce)
@@ -82,6 +113,16 @@ class ControlFragment : Fragment() {
             pumpOnImage.observe(this@ControlFragment, Observer {
                 pumpSetChoice(1)
                 binding.pumpOnImg.startAnimation(aniBounce)
+            })
+
+            pumpOffImage2.observe(this@ControlFragment, Observer {
+                pumpSetChoice2(0)
+                binding.pumpOffImg2.startAnimation(aniBounce)
+            })
+
+            pumpOnImage2.observe(this@ControlFragment, Observer {
+                pumpSetChoice2(1)
+                binding.pumpOnImg2.startAnimation(aniBounce)
             })
 
             pumpbtn.observe(this@ControlFragment, Observer {
@@ -175,30 +216,36 @@ class ControlFragment : Fragment() {
 
             getLedResult.observe(viewLifecycleOwner, Observer {
                 if (it.ledStatus.status) {
-                    binding.ledImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_led_on))
+                    binding.ledImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_led_on))
                 } else {
-                    binding.ledImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_led_off))
+                    binding.ledImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_led_off))
                 }
             })
 
             getPumpResult.observe(viewLifecycleOwner, Observer {
                 if (it.waterPumpStatus.status) {
-                    binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_pump_on))
+                    binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_pump_on))
                 } else {
-                    binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_pump_off))
+                    binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_pump_off))
                 }
             })
 
             getFanResult.observe(viewLifecycleOwner, Observer {
                 if (it.fanStatus.status) {
-                    binding.fanImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_fan_on))
+                    binding.fanImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_fan_on))
                 } else {
-                    binding.fanImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_fan_off))
+                    binding.fanImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_fan_off))
                 }
             })
 
             stateErrorEvent.observe(viewLifecycleOwner, Observer {
-
+                Toast.makeText(requireContext(), "${it.message}", Toast.LENGTH_SHORT).show()
             })
         }
     }
@@ -246,6 +293,27 @@ class ControlFragment : Fragment() {
         }
     }
 
+    private fun pumpSetChoice2(choice: Int) {
+        when (choice) {
+            0 -> {
+                isChoicePump2 = choice
+                binding.pumpOffImg2.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                    R.drawable.ic_pump_check))
+                binding.pumpOnImg2.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                    R.drawable.ic_pump_on))
+                waterPumpState2()
+            }
+            1 -> {
+                isChoicePump2 = choice
+                binding.pumpOnImg2.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                    R.drawable.ic_pump_check))
+                binding.pumpOffImg2.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                    R.drawable.ic_pump_off))
+                waterPumpState2()
+            }
+        }
+    }
+
     private fun fanSetChoice(choice: Int) {
         when (choice) {
             0 -> {
@@ -288,6 +356,17 @@ class ControlFragment : Fragment() {
             params["status"] = true
         }
         viewModel.controlPump(params)
+    }
+
+    fun waterPumpState2() {
+        val params = HashMap<String?, Boolean?>()
+
+        if (isChoicePump2 == 0) {
+            params["status"] = false
+        } else if (isChoicePump2 == 1) {
+            params["status"] = true
+        }
+        viewModel.controlPump2(params)
     }
 
     fun fanState() {

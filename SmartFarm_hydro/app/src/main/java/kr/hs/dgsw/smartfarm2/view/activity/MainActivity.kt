@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartfarm2.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -9,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.smartfarm2.R
 import kr.hs.dgsw.smartfarm2.databinding.ActivityMainBinding
-import kr.hs.dgsw.smartfarm2.view.fagment.ControlFragment
-import kr.hs.dgsw.smartfarm2.view.fagment.StateFragment
+import kr.hs.dgsw.smartfarm2.view.fragment.ControlFragment
+import kr.hs.dgsw.smartfarm2.view.fragment.StateFragment
 import kr.hs.dgsw.smartfarm2.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -63,11 +64,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun onClickCamera() {
+        Toast.makeText(this, "준비 중입니다.", Toast.LENGTH_SHORT).show()
+    }
+
     private fun observeViewModel() {
         with(viewModel) {
             cropsTipBtn.observe(this@MainActivity, Observer {
                 val intent = Intent(this@MainActivity, CropsActivity::class.java)
                 startActivity(intent)
+            })
+
+            cameraBtn.observe(this@MainActivity, Observer {
+                onClickCamera()
             })
         }
     }

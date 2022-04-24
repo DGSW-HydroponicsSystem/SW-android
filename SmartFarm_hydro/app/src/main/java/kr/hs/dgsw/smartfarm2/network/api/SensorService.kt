@@ -21,6 +21,9 @@ interface SensorService {
     @GET("fan/")
     fun getFan(): Single<retrofit2.Response<Response<Fan>>>
 
+    @GET("get_all_module_status")
+    fun getAllStatus(): Single<retrofit2.Response<Response<Module>>>
+
     @FormUrlEncoded
     @POST("control_water/")
     fun controlWaterPump(
