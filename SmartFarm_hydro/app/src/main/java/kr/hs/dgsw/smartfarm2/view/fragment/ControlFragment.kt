@@ -88,11 +88,19 @@ class ControlFragment : Fragment() {
                         R.drawable.ic_led_off))
                 }
 
-                if (it.waterStatus.status) {
+                if (it.waterStatus1.status) {
                     binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
                         R.drawable.ic_pump_on))
                 } else {
                     binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_pump_off))
+                }
+
+                if (it.waterStatus2.status) {
+                    binding.pumpImgStatus2.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_pump_on))
+                } else {
+                    binding.pumpImgStatus2.setImageDrawable(ContextCompat.getDrawable(requireContext(),
                         R.drawable.ic_pump_off))
                 }
 
@@ -130,13 +138,16 @@ class ControlFragment : Fragment() {
                     Toast.makeText(requireActivity(), "상태를 먼저 선택해주세요.", Toast.LENGTH_SHORT).show()
                 } else {
                     val params = HashMap<String?, Boolean?>()
+                    val device = HashMap<String?, Int?>()
+
+                    device["device"] = 1
 
                     if (isChoicePump == 0) {
                         params["status"] = false
                     } else if (isChoicePump == 1) {
                         params["status"] = true
                     }
-                    viewModel.controlPump(params)
+                    viewModel.controlPump(params, device)
                 }
 
             })
@@ -198,6 +209,11 @@ class ControlFragment : Fragment() {
                     R.drawable.ic_pump_on))
                 binding.pumpOffImg.setImageDrawable(ContextCompat.getDrawable(requireContext(),
                     R.drawable.ic_pump_off))
+
+                binding.pumpOnImg2.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                    R.drawable.ic_pump_on))
+                binding.pumpOffImg2.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                    R.drawable.ic_pump_off))
             })
 
             fanControlResult.observe(viewLifecycleOwner, Observer {
@@ -225,8 +241,16 @@ class ControlFragment : Fragment() {
             })
 
             getPumpResult.observe(viewLifecycleOwner, Observer {
-                if (it.waterPumpStatus.status) {
+                if (it.waterPumpStatus1.status) {
                     binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_pump_on))
+                } else {
+                    binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_pump_off))
+                }
+
+                if (it.waterPumpStatus2.status) {
+                    binding.pumpImgStatus2.setImageDrawable(ContextCompat.getDrawable(requireContext(),
                         R.drawable.ic_pump_on))
                 } else {
                     binding.pumpImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
@@ -236,10 +260,12 @@ class ControlFragment : Fragment() {
 
             getFanResult.observe(viewLifecycleOwner, Observer {
                 if (it.fanStatus.status) {
-                    binding.fanImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                    binding.fanImgStatus.setImageDrawable(ContextCompat.getDrawable(
+                        requireContext(),
                         R.drawable.ic_fan_on))
                 } else {
-                    binding.fanImgStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(),
+                    binding.fanImgStatus.setImageDrawable(ContextCompat.getDrawable(
+                        requireContext(),
                         R.drawable.ic_fan_off))
                 }
             })
@@ -348,25 +374,31 @@ class ControlFragment : Fragment() {
     }
 
     fun waterPumpState() {
-        val params = HashMap<String?, Boolean?>()
+        val status = HashMap<String?, Boolean?>()
+        val device = HashMap<String?, Int?>()
+
+        device["device"] = 1
 
         if (isChoicePump == 0) {
-            params["status"] = false
+            status["status"] = false
         } else if (isChoicePump == 1) {
-            params["status"] = true
+            status["status"] = true
         }
-        viewModel.controlPump(params)
+        viewModel.controlPump(status, device)
     }
 
     fun waterPumpState2() {
-        val params = HashMap<String?, Boolean?>()
+        val status = HashMap<String?, Boolean?>()
+        val device = HashMap<String?, Int?>()
+
+        device["device"] = 2
 
         if (isChoicePump2 == 0) {
-            params["status"] = false
+            status["status"] = false
         } else if (isChoicePump2 == 1) {
-            params["status"] = true
+            status["status"] = true
         }
-        viewModel.controlPump2(params)
+        viewModel.controlPump(status, device)
     }
 
     fun fanState() {

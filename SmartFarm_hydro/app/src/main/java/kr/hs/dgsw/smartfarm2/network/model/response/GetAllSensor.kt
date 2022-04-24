@@ -12,13 +12,13 @@ data class GetAllSensor(
     val temp1: Value,
     @SerializedName("temp_2")
     val temp2: Value,
-    @SerializedName("sunlight1")
+    @SerializedName("sunlight_1")
     val sunlight1: StatusInt,
-    @SerializedName("sunlight2")
+    @SerializedName("sunlight_2")
     val sunlight2: StatusInt,
-    @SerializedName("water_temp1")
+    @SerializedName("water_temp_1")
     val waterTemp1: StatusInt,
-    @SerializedName("water_temp2")
+    @SerializedName("water_temp_2")
     val waterTemp2: StatusInt,
     @SerializedName("water_level")
     val waterLevel: StatusInt,

@@ -112,21 +112,8 @@ class ControlViewModel : ViewModel() {
         })
     }
 
-    fun controlPump(params: HashMap<String?, Boolean?>) {
-        addDisposable(repository.controlPump(params), object : DisposableSingleObserver<Boolean>() {
-            override fun onSuccess(t: Boolean) {
-                pumpControlResult.value = t
-            }
-
-            override fun onError(e: Throwable) {
-                controlErrorEvent.value = e
-                e.printStackTrace()
-            }
-        })
-    }
-
-    fun controlPump2(params: HashMap<String?, Boolean?>) {
-        addDisposable(repository.controlPump(params), object : DisposableSingleObserver<Boolean>() {
+    fun controlPump(status: HashMap<String?, Boolean?>, device: HashMap<String?, Int?>) {
+        addDisposable(repository.controlPump(status, device), object : DisposableSingleObserver<Boolean>() {
             override fun onSuccess(t: Boolean) {
                 pumpControlResult.value = t
             }

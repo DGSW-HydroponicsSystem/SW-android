@@ -2,44 +2,51 @@ package kr.hs.dgsw.smartfarm2.network.api
 
 import io.reactivex.Single
 import kr.hs.dgsw.smartfarm2.network.model.response.*
-import retrofit2.http.FieldMap
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface SensorService {
 
+    @Headers("x-www-form-urlencoded")
     @GET("get_all_sensor/")
     fun getAllSensor(): Single<retrofit2.Response<Response<GetAllSensor>>>
 
+    @Headers("x-www-form-urlencoded")
     @GET("water/")
     fun getWater(): Single<retrofit2.Response<Response<Water>>>
 
+    @Headers("x-www-form-urlencoded")
     @GET("led/")
     fun getLed(): Single<retrofit2.Response<Response<Led>>>
 
+    @Headers("x-www-form-urlencoded")
     @GET("fan/")
     fun getFan(): Single<retrofit2.Response<Response<Fan>>>
 
+    @Headers("x-www-form-urlencoded")
     @GET("get_all_module_status")
     fun getAllStatus(): Single<retrofit2.Response<Response<Module>>>
 
+    @Headers("x-www-form-urlencoded")
     @FormUrlEncoded
-    @POST("control_water/")
+    @POST("water/")
     fun controlWaterPump(
         @FieldMap
-        params: HashMap<String?, Boolean?>,
+        status: HashMap<String?, Boolean?>,
+        @FieldMap
+        device: HashMap<String?, Int?>,
     ): Single<retrofit2.Response<Void>>
 
+    @Headers("x-www-form-urlencoded")
     @FormUrlEncoded
-    @POST("control_led/")
+    @POST("led/")
     fun controlLed(
         @FieldMap
         params: HashMap<String?, Boolean?>,
     ): Single<retrofit2.Response<Void>>
 
+    @Headers("x-www-form-urlencoded")
     @FormUrlEncoded
-    @POST("control_fan/")
+    @POST("fan/")
     fun controlFan(
         @FieldMap
         params: HashMap<String?, Boolean?>,

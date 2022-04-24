@@ -72,8 +72,8 @@ class SensorRepository {
         }
     }
 
-    fun controlPump(params: HashMap<String?, Boolean?>): Single<Boolean> {
-        return sensorApi.controlWaterPump(params).map {
+    fun controlPump(status: HashMap<String?, Boolean?>, device: HashMap<String?, Int?>): Single<Boolean> {
+        return sensorApi.controlWaterPump(status, device).map {
             if (!it.isSuccessful) {
                 val errorBody = JSONObject(it.errorBody().toString())
                 throw Throwable(errorBody.getString("message"))
