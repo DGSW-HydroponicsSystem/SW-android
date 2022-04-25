@@ -9,10 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
-import kr.hs.dgsw.smartfarm2.network.model.response.Fan
-import kr.hs.dgsw.smartfarm2.network.model.response.Led
-import kr.hs.dgsw.smartfarm2.network.model.response.Module
-import kr.hs.dgsw.smartfarm2.network.model.response.Water
+import kr.hs.dgsw.smartfarm2.network.model.response.*
 import kr.hs.dgsw.smartfarm2.repository.SensorRepository
 import kr.hs.dgsw.smartfarm2.util.SingleLiveEvent
 
@@ -85,17 +82,16 @@ class ControlViewModel : ViewModel() {
         fanOffImage.call()
     }
 
-    fun getAllStatus(){
-        addDisposable(repository.getAllModule(), object: DisposableSingleObserver<Module>(){
-            override fun onSuccess(t: Module) {
-                getAllResult.value = t
+    fun getAllStatus() {
+        addDisposable(repository.getAllModule(), object : DisposableSingleObserver<Response<Module>>() {
+            override fun onSuccess(t: Response<Module>) {
+                getAllResult.value = t.data
             }
 
             override fun onError(e: Throwable) {
                 stateErrorEvent.value = e
                 e.printStackTrace()
             }
-
         })
     }
 
@@ -103,19 +99,6 @@ class ControlViewModel : ViewModel() {
         addDisposable(repository.controlLed(params), object : DisposableSingleObserver<Boolean>() {
             override fun onSuccess(t: Boolean) {
                 ledControlResult.value = t
-            }
-
-            override fun onError(e: Throwable) {
-                controlErrorEvent.value = e
-                e.printStackTrace()
-            }
-        })
-    }
-
-    fun controlPump(status: HashMap<String?, Boolean?>, device: HashMap<String?, Int?>) {
-        addDisposable(repository.controlPump(status, device), object : DisposableSingleObserver<Boolean>() {
-            override fun onSuccess(t: Boolean) {
-                pumpControlResult.value = t
             }
 
             override fun onError(e: Throwable) {
@@ -138,10 +121,24 @@ class ControlViewModel : ViewModel() {
         })
     }
 
+    fun controlPump(status: HashMap<String?, Boolean?>, device: HashMap<String?, Int?>) {
+        addDisposable(repository.controlPump(status, device),
+            object : DisposableSingleObserver<Boolean>() {
+                override fun onSuccess(t: Boolean) {
+                    pumpControlResult.value = t
+                }
+
+                override fun onError(e: Throwable) {
+                    controlErrorEvent.value = e
+                    e.printStackTrace()
+                }
+            })
+    }
+
     fun getLedState() {
-        addDisposable(repository.getLedState(), object : DisposableSingleObserver<Led>() {
-            override fun onSuccess(t: Led) {
-                getLedResult.value = t
+        addDisposable(repository.getLedState(), object : DisposableSingleObserver<Response<Led>>() {
+            override fun onSuccess(t: Response<Led>) {
+                getLedResult.value = t.data
             }
 
             override fun onError(e: Throwable) {
@@ -151,9 +148,9 @@ class ControlViewModel : ViewModel() {
     }
 
     fun getPumpState() {
-        addDisposable(repository.getLedState(), object : DisposableSingleObserver<Water>() {
-            override fun onSuccess(t: Water) {
-                getPumpResult.value = t
+        addDisposable(repository.getWaterState(), object : DisposableSingleObserver<Response<Water>>() {
+            override fun onSuccess(t: Response<Water>) {
+                getPumpResult.value = t.data
             }
 
             override fun onError(e: Throwable) {
@@ -163,9 +160,9 @@ class ControlViewModel : ViewModel() {
     }
 
     fun getFanState() {
-        addDisposable(repository.getLedState(), object : DisposableSingleObserver<Fan>() {
-            override fun onSuccess(t: Fan) {
-                getFanResult.value = t
+        addDisposable(repository.getFanState(), object : DisposableSingleObserver<Response<Fan>>() {
+            override fun onSuccess(t: Response<Fan>) {
+                getFanResult.value = t.data
             }
 
             override fun onError(e: Throwable) {

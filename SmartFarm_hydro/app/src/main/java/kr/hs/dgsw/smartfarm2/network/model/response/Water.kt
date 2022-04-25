@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Water(
     @SerializedName("water_pump_status_1")
-    val waterPumpStatus1: Status,
+    val waterPumpStatus1: StatusValue,
 
     @SerializedName("water_pump_status_2")
-    val waterPumpStatus2: Status,
+    val waterPumpStatus2: StatusValue,
 )

@@ -40,8 +40,9 @@ class StateFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        binding.refreshControlView.setOnRefreshListener {
+        binding.refreshControlView1.setOnRefreshListener {
             viewModel.getAllSensor()
+            binding.refreshControlView1.isRefreshing = false
         }
 
         with(viewModel) {
@@ -56,13 +57,13 @@ class StateFragment : Fragment() {
                 binding.tempProgress2.progress = it.data.temp2.value
                 binding.tempTvProgress2.text = "${it.data.temp2.value}℃"
 
-                binding.waterTempProgress1.progress = it.data.waterTemp1.status
-                binding.waterTempTvProgress1.text = "${it.data.waterTemp1.status}℃"
-                binding.waterTempProgress2.progress = it.data.waterTemp2.status
-                binding.waterTempTvProgress2.text = "${it.data.waterTemp2.status}℃"
+                binding.waterTempProgress1.progress = it.data.waterTemp1.value
+                binding.waterTempTvProgress1.text = "${it.data.waterTemp1.value}℃"
+                binding.waterTempProgress2.progress = it.data.waterTemp2.value
+                binding.waterTempTvProgress2.text = "${it.data.waterTemp2.value}℃"
 
-                binding.waterLevelProgress1.progress = it.data.waterLevel.status
-                when (it.data.waterLevel.status) {
+                binding.waterLevelProgress1.progress = it.data.waterLevel.value * 20
+                when (it.data.waterLevel.value) {
                     1 -> binding.waterLevelTvProgress1.text = "하"
                     2 -> binding.waterLevelTvProgress1.text = "중"
                     3 -> binding.waterLevelTvProgress1.text = "상"
@@ -70,13 +71,13 @@ class StateFragment : Fragment() {
                     else -> binding.waterLevelTvProgress1.text = "없음"
                 }
 
-                binding.sunlightProgress1.progress = it.data.sunlight1.status
-                binding.sunlightTvProgress1.text = "${it.data.sunlight1.status}%"
-                binding.sunlightProgress2.progress = it.data.sunlight2.status
-                binding.sunlightTvProgress2.text = "${it.data.sunlight2.status}%"
+                binding.sunlightProgress1.progress = it.data.sunlight1.value
+                binding.sunlightTvProgress1.text = "${it.data.sunlight1.value}%"
+                binding.sunlightProgress2.progress = it.data.sunlight2.value
+                binding.sunlightTvProgress2.text = "${it.data.sunlight2.value}%"
 
-                binding.phProgress1.progress = it.data.waterPh.status.roundToInt()
-                binding.phTvProgress1.text = "${it.data.waterPh.status.roundToInt()}pH"
+                binding.phProgress1.progress = it.data.waterPh.value.roundToInt()
+                binding.phTvProgress1.text = "${it.data.waterPh.value}pH"
 
             })
 

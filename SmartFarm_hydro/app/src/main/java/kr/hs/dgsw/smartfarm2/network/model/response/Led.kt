@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class Led(
     @SerializedName("led_status")
-    val ledStatus: Status
+    val ledStatus: StatusValue
 )

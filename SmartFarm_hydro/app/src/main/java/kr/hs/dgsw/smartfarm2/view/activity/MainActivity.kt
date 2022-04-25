@@ -38,11 +38,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonControl.setOnClickListener {
             binding.buttonState.background =
-                ContextCompat.getDrawable(this, R.color.button_off_color)
+                ContextCompat.getDrawable(this, R.drawable.button_off_background)
             binding.buttonState.setTextColor(ContextCompat.getColor(this, R.color.button_off_text))
 
             binding.buttonControl.background =
-                ContextCompat.getDrawable(this, R.color.button_on_color)
+                ContextCompat.getDrawable(this, R.drawable.button_on_background)
             binding.buttonControl.setTextColor(ContextCompat.getColor(this, R.color.button_on_text))
 
             supportFragmentManager.beginTransaction().replace(R.id.container, controlFragment)
@@ -51,12 +51,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonState.setOnClickListener {
             binding.buttonControl.background =
-                ContextCompat.getDrawable(this, R.color.button_off_color)
+                ContextCompat.getDrawable(this, R.drawable.button_off_background)
             binding.buttonControl.setTextColor(ContextCompat.getColor(this,
                 R.color.button_off_text))
 
             binding.buttonState.background =
-                ContextCompat.getDrawable(this, R.color.button_on_color)
+                ContextCompat.getDrawable(this, R.drawable.button_on_background)
             binding.buttonState.setTextColor(ContextCompat.getColor(this, R.color.button_on_text))
 
             supportFragmentManager.beginTransaction().replace(R.id.container, stateFragment)
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onClickCamera() {
+    fun onClickCameraBtn() {
         Toast.makeText(this, "준비 중입니다.", Toast.LENGTH_SHORT).show()
     }
 
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             })
 
             cameraBtn.observe(this@MainActivity, Observer {
-                onClickCamera()
+                onClickCameraBtn()
             })
         }
     }

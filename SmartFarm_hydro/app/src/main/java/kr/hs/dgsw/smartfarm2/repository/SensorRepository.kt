@@ -19,7 +19,7 @@ class SensorRepository {
     }
 
     fun getAllModule(): Single<Response<Module>> {
-        return sensorApi.getAllStatus().map {
+        return sensorApi.getAllModule().map {
             if (!it.isSuccessful) {
                 val errorBody = JSONObject(it.errorBody().toString())
                 throw Throwable(errorBody.getString("message"))
